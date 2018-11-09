@@ -1,8 +1,9 @@
 import React from "react";
 import { Consumer } from "../../context";
 import { Link } from "react-router-dom";
+import NotFound from "../pages/NotFound";
 
-class About extends React.Component {
+class AboutContact extends React.Component {
   render() {
     const { id } = this.props.match.params;
     return (
@@ -18,13 +19,17 @@ class About extends React.Component {
 
           return (
             <div>
-              {filtered.map(contact => (
-                <div>
-                  <h3>{contact.name}</h3>
-                  <p>{contact.phone}</p>
-                  <p>{contact.email}</p>
-                </div>
-              ))}
+              {filtered.length > 0 ? (
+                filtered.map(contact => (
+                  <div>
+                    <h3>{contact.name}</h3>
+                    <p>{contact.phone}</p>
+                    <p>{contact.email}</p>
+                  </div>
+                ))
+              ) : (
+                <NotFound />
+              )}
             </div>
           );
         }}
@@ -33,4 +38,4 @@ class About extends React.Component {
   }
 }
 
-export default About;
+export default AboutContact;

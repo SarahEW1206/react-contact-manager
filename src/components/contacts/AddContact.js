@@ -32,6 +32,7 @@ class AddContact extends Component {
       }
       this.setState({ errors });
     } else {
+      //Send the dispatch
       dispatch({ type: "ADD_CONTACT", payload: this.state });
       //Clear state (inputs) after submit
       this.setState({
@@ -40,6 +41,7 @@ class AddContact extends Component {
         phone: "",
         errors: {}
       });
+      this.props.history.push("/");
     }
   };
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default () => {
+const About = () => {
   return (
     <div>
       <h1 className="display-4">This is a contact manager.</h1>
@@ -9,3 +9,5 @@ export default () => {
     </div>
   );
 };
+
+export default About;
