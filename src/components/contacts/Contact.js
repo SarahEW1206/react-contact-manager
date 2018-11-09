@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Consumer } from "../../context";
+import { Link } from "react-router-dom";
 
 class Contact extends Component {
   //DON'T NEED TO DO ALL THIS IF WE MAKE THE FUNCTION AN ARROW FUNCTION.
@@ -58,6 +59,7 @@ class Contact extends Component {
                   <li className="list-group-item">{email}</li>
                 </ul>
               )}
+              <Link to={`/${id}`}>More Info</Link>
             </div>
           );
         }}
