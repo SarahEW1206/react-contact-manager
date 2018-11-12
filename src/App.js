@@ -21,6 +21,20 @@ class App extends Component {
         <Router basename={process.env.PUBLIC_URL}>
           <div className="App">
             <Header branding="Contact Manager" />
+            <p>
+              This app, for the time being, makes HTTP requests to{" "}
+              <a href="https://jsonplaceholder.typicode.com/">
+                JSON Placeholder
+              </a>
+              , which means that you're not actually able to make any changes to
+              backend data. You can edit create, edit* or delete a contact, but
+              the changes will only stick around as long as the app is not
+              refreshed. Stay tuned for 2.0!
+            </p>
+            <p>
+              *You also can't edit any contact you add, because it's not part of
+              the actual placeholder data.
+            </p>
             <div className="container">
               <Switch>
                 <Route exact path="/" component={Contacts} />
