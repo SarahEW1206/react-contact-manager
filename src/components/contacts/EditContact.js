@@ -37,8 +37,8 @@ class EditContact extends Component {
 
     let errors = {};
 
+    //It works to just pass state into the PUT request, but this eliminates the extra data we don't have to pass through (id, which stays the same, and errors).
     let updatedContact = {
-      id,
       name,
       email,
       phone
@@ -48,6 +48,7 @@ class EditContact extends Component {
     console.log(this.state);
 
     //Check for errors
+    //If ANY field is empty, go on to each field and if that field is empty, update the errors object with the respective error string.
     if (name === "" || email === "" || phone === "") {
       if (name === "") {
         errors.name = "Name is required.";
@@ -61,12 +62,17 @@ class EditContact extends Component {
       //If any errors above, they will get pushed to the errors array, then we set errors in the state to the array.
       this.setState({ errors });
     } else {
-      await axios.put(
-        `http://jsonplaceholder.typicode.com/users/${id}`,
-        updatedContact
-      );
-
-      dispatch({ type: "UPDATE_CONTACT", payload: updatedContact });
+      //If no errors, make the put request (using async await; sending through the updatedContact object)...
+      try {
+        const res = await axios.put(
+          `http://jsonplaceholder.typicode.com/users/${id}`,
+          updatedContact
+        );
+        //...and dispatch the update function with payload of response data from the PUT.
+        dispatch({ type: "UPDATE_CONTACT", payload: res.data });
+      } catch (error) {
+        alert("Contact not found in database. " + error);
+      }
 
       //Clear state (inputs) after submit
       this.setState({
@@ -77,6 +83,7 @@ class EditContact extends Component {
         errors: {}
       });
 
+      //Redirect user back to the main page WITHOUT refreshing the app.
       this.props.history.push("/");
     }
   };

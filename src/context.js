@@ -28,6 +28,8 @@ const reducer = (state, action) => {
           action.payload,
           ...state.contacts.filter(contact => contact.id !== action.payload.id)
         ]
+        //This is how it's done in the video, this will not change the order like it does above. Depends what you want.
+        // contacts: state.contacts.map(contact => contact.id===action.payload.id ? (contact = action.payload) : contact)
       };
 
     default:
