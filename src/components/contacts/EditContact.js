@@ -65,7 +65,7 @@ class EditContact extends Component {
       //If no errors, make the put request (using async await; sending through the updatedContact object)...
       try {
         const res = await axios.put(
-          `http://jsonplaceholder.typicode.com/users/${id}`,
+          `https://jsonplaceholder.typicode.com/users/${id}`,
           updatedContact
         );
         //...and dispatch the update function with payload of response data from the PUT.
