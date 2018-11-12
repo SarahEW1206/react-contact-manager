@@ -18,7 +18,7 @@ class Contacts extends Component {
                 <Contact key={contact.id} contact={contact} />
               ))}
               <p>
-                <Link to={"/add"}>Add a contact.</Link>
+                <Link to={"/contact/add"}>Add a contact.</Link>
               </p>
               <p>
                 <Link to={"/about"}>About this app.</Link>

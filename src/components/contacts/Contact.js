@@ -25,9 +25,12 @@ class Contact extends Component {
   };
 
   onDeleteClick = async (id, dispatch) => {
-    await axios.delete(`http://jsonplaceholder.typicode.com/users/${id}`);
-
-    dispatch({ type: "DELETE_CONTACT", payload: id });
+    try {
+      await axios.delete(`http://jsonplaceholder.typicode.com/users/${id}`);
+      dispatch({ type: "DELETE_CONTACT", payload: id });
+    } catch (error) {
+      dispatch({ type: "DELETE_CONTACT", payload: id });
+    }
   };
 
   render() {
@@ -53,6 +56,17 @@ class Contact extends Component {
                   style={{ cursor: "pointer", float: "right", color: "red" }}
                   onClick={this.onDeleteClick.bind(this, id, dispatch)}
                 />
+                <Link to={`contact/edit/${id}`}>
+                  <i
+                    className="fas fa-pencil-alt"
+                    style={{
+                      cursor: "pointer",
+                      float: "right",
+                      marginRight: "20px",
+                      color: "gray"
+                    }}
+                  />
+                </Link>
               </h4>
               {showContactInfo && (
                 <ul className="list-group">
@@ -60,7 +74,7 @@ class Contact extends Component {
                   <li className="list-group-item">{email}</li>
                 </ul>
               )}
-              <Link to={`/${id}`}>More Info</Link>
+              <Link to={`/contact/${id}`}>More Info</Link>
             </div>
           );
         }}
