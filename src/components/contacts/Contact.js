@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Consumer } from "../../context";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 class Contact extends Component {
   //DON'T NEED TO DO ALL THIS IF WE MAKE THE FUNCTION AN ARROW FUNCTION.
@@ -23,9 +24,11 @@ class Contact extends Component {
     this.setState({ showContactInfo: !this.state.showContactInfo });
   };
 
-  // onDeleteClick = (id, dispatch) => {
-  //   dispatch({ type: "DELETE_CONTACT", payload: id });
-  // };
+  onDeleteClick = (id, dispatch) => {
+    axios
+      .delete(`http://jsonplaceholder.typicode.com/users/${id}`)
+      .then(res => dispatch({ type: "DELETE_CONTACT", payload: id }));
+  };
 
   render() {
     //This is called destructuring!
@@ -48,9 +51,7 @@ class Contact extends Component {
                 <i
                   className="fas fa-times"
                   style={{ cursor: "pointer", float: "right", color: "red" }}
-                  onClick={() =>
-                    dispatch({ type: "DELETE_CONTACT", payload: id })
-                  }
+                  onClick={this.onDeleteClick.bind(this, id, dispatch)}
                 />
               </h4>
               {showContactInfo && (

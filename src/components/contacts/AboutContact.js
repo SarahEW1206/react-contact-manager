@@ -1,6 +1,6 @@
 import React from "react";
 import { Consumer } from "../../context";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import NotFound from "../pages/NotFound";
 
 class AboutContact extends React.Component {
